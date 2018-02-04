@@ -57,5 +57,4 @@ class ScrollUpAndDown extends React.Component {
         )
     }
 }
-
 export default ScrollUpAndDown
