@@ -30,7 +30,7 @@ export default class SubRouter extends React.Component {
                 transitionName={transName}
                 transitionEnterTimeout={transTime}
                 transitionLeaveTimeout={transTime}>
-                <div key={key} style={{ position: "absolute", width: "100%" }}>
+                <div key={key} style={{ position: "absolute", width: "100%", top: '0', bottom: '0' }}>
                     <Switch location={location}>
                         <Route exact path='/' component={ZhiHu}></Route>
                         <Route path='/zhihu' component={ZhiHu}></Route>
