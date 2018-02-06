@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom';
-
 import { PullToRefresh } from 'antd-mobile'
+import { DIRECTION_TYPE } from '../../constants/zhiHu'
 class ScrollUpAndDown extends React.Component {
     constructor(props) {
         super(props)
@@ -14,28 +14,84 @@ class ScrollUpAndDown extends React.Component {
     componentDidMount() {
         this.setConfig()
     }
-    setConfig() {
-        let setDirection = null
-        const $scrollUpAndDown = ReactDOM.findDOMNode(this.scrollUpAndDown)
-        $scrollUpAndDown.addEventListener("scroll", () => {
-            const { refreshing } = this.state
-            if (refreshing) {
-                return false
-            }
-            clearTimeout(setDirection)
-            setDirection = setTimeout(() => {
-                const distance = $scrollUpAndDown.scrollTop
-                if (distance > 50) {
-                    this.setState(prevState => ({
-                        direction: 'up'
-                    }))
-                } else {
-                    this.setState(prevState => ({
-                        direction: 'down'
-                    }))
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.scrollProps.directionType !== this.props.scrollProps.directionType)
+            this.setConfig(nextProps.scrollProps.directionType)
+    }
+    setConfig(type) {
+        const directionType = type || this.props.scrollProps.directionType
+        if (directionType === DIRECTION_TYPE.UpAndDown) {
+            let setDirection = null
+            const $scrollUpAndDown = ReactDOM.findDOMNode(this.scrollUpAndDown)
+            $scrollUpAndDown.onscroll = () => {
+                const { refreshing } = this.state
+                if (refreshing) {
+                    return false
                 }
-            }, 20)
-        })
+                clearTimeout(setDirection)
+                setDirection = setTimeout(() => {
+                    const distance = $scrollUpAndDown.scrollTop
+                    if (distance > 50) {
+                        this.setState(prevState => ({
+                            direction: 'up'
+                        }))
+                    } else {
+                        this.setState(prevState => ({
+                            direction: 'down'
+                        }))
+                    }
+                }, 20)
+            }
+            // $scrollUpAndDown.addEventListener("scroll", () => {
+            //     const { refreshing } = this.state
+            //     if (refreshing) {
+            //         return false
+            //     }
+            //     clearTimeout(setDirection)
+            //     setDirection = setTimeout(() => {
+            //         const distance = $scrollUpAndDown.scrollTop
+            //         if (distance > 50) {
+            //             this.setState(prevState => ({
+            //                 direction: 'up'
+            //             }))
+            //         } else {
+            //             this.setState(prevState => ({
+            //                 direction: 'down'
+            //             }))
+            //         }
+            //     }, 20)
+            // })
+        } else if (directionType === DIRECTION_TYPE.Up) {
+            this.setState(prevState => ({
+                direction: 'up'
+            }))
+        } else if (directionType === DIRECTION_TYPE.Down) {
+            this.setState(prevState => ({
+                direction: 'down'
+            }))
+        } else {
+            let setDirection = null
+            const $scrollUpAndDown = ReactDOM.findDOMNode(this.scrollUpAndDown)
+            $scrollUpAndDown.onscroll = () => {
+                const { refreshing } = this.state
+                if (refreshing) {
+                    return false
+                }
+                clearTimeout(setDirection)
+                setDirection = setTimeout(() => {
+                    const distance = $scrollUpAndDown.scrollTop
+                    if (distance > 50) {
+                        this.setState(prevState => ({
+                            direction: 'down'
+                        }))
+                    } else {
+                        this.setState(prevState => ({
+                            direction: 'up'
+                        }))
+                    }
+                }, 20)
+            }
+        }
     }
     onRefreshHandle() {
         const isRefresh = this.state.direction === 'up' ? false : true

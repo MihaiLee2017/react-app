@@ -15,7 +15,7 @@ class ListItem extends React.Component {
         return (
             <div className='list_content'>
                 <p>{item.title}</p>
-                <img src={item.images[0]} />
+                {item.images && item.images.length > 0 && <img src={item.images[0]} />}
             </div>
         )
     }

@@ -1,0 +1,27 @@
+.logo{
+    height: 230px;
+    width: 100%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    .mask{
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        background-color: rgba(0,0,0,0.2);
+    }
+    h1{
+        position: absolute;
+        bottom: 10px;
+        left: 0px;
+        font-size: 20px;
+        line-height: 1.5em;
+        color: #fff;
+        padding: 0px 20px;
+    }
+}
+
+           

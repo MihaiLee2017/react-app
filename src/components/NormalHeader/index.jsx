@@ -1,12 +1,17 @@
 import React from 'react'
-import { NavBar } from 'antd-mobile'
+import { NavBar, Icon } from 'antd-mobile'
 class NormalHeader extends React.Component {
     // constructor(props) {
     //     super(props)
     // }
     render() {
+        const { backFn } = this.props
         return (
-            <NavBar mode='dark'>{this.props.title}</NavBar>
+            <NavBar
+                mode='dark'
+                icon={<Icon type="ellipsis" />}
+                onLeftClick={backFn}
+            >{this.props.title}</NavBar>
         )
     }
 }

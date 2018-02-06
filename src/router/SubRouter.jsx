@@ -6,7 +6,8 @@ import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
 import ZhiHu from '../containers/ZhiHu/index'
 import DouBan from '../containers/DouBan/index'
-const NORMAL_PATH = ['/', '/zhihu', '/douban']
+import Detail from '../containers/Detail/index'
+import Commnet from '../containers/Comment/index'
 export default class SubRouter extends React.Component {
     // constructor(props) {
     //     super(props)
@@ -16,15 +17,8 @@ export default class SubRouter extends React.Component {
         const { location = {}, history = {}, } = this.props
         const key = location.pathname
         const { action } = history
-        let transName = action === 'POP' ? "back" : action === "PUSH" ? "go" : ""
+        let transName = action === 'POP' ? "back" : action === "PUSH" ? "go" : "example"
         let transTime = action === 'POP' ? 400 : action === "PUSH" ? 400 : 100
-        const isChange = NORMAL_PATH.some(item => {
-            return item === key
-        })
-        if (isChange) {
-            transName = "example"
-            transTime = 400
-        }
         return (
             <ReactCSSTransitionGroup
                 transitionName={transName}
@@ -35,6 +29,8 @@ export default class SubRouter extends React.Component {
                         <Route exact path='/' component={ZhiHu}></Route>
                         <Route path='/zhihu' component={ZhiHu}></Route>
                         <Route path='/douban' component={DouBan}></Route>
+                        <Route path='/detail/:id' component={Detail}></Route>
+                        <Route path='/comments/:id' component={Commnet}></Route>
                     </Switch>
                 </div >
             </ReactCSSTransitionGroup>

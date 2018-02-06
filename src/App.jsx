@@ -32,7 +32,7 @@ class App extends Component {
     this.setState({
       pathname: path,
     })
-    this.props.history.push(`/${path}`)
+    this.props.history.replace(`/${path}`)
   }
   render() {
     const footerProps = {

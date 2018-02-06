@@ -13,4 +13,4 @@ export const ARTICLE_SHORT_COMMENTS = "https://zhihu-daily.leanapp.cn/api/v1/con
 // 主题日报
 export const DAILY_THEMES = "https://zhihu-daily.leanapp.cn/api/v1/themes"
 // 主题日报内容
-export const DAILY_THEMES_LIST = "https://zhihu-daily.leanapp.cn/api/v1/themes/{id}"
+export const DAILY_THEMES_ITEM = "https://zhihu-daily.leanapp.cn/api/v1/themes/{id}"
